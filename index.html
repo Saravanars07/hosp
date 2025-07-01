@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Portal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash">
+        <!-- Animated SVG: Heartbeat monitor line inside a circle -->
+        <svg class="heartbeat" viewBox="0 0 120 120">
+            <path
+            d="M60 100 L20 60 A20 20 0 1 1 60 40 A20 20 0 1 1 100 60 Z"
+            fill="white"
+            stroke="none"
+            stroke-width="4"
+            />
+            <polyline 
+            points="20,60 40,60 50,40 60,80 70,50 80,60 100,60"
+            fill="none" stroke="#ff0000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="points" 
+                values="
+                20,60 40,60 50,40 60,80 70,50 80,60 100,60;
+                20,60 40,50 50,60 60,40 70,80 80,60 100,60;
+                20,60 40,60 50,40 60,80 70,50 80,60 100,60
+                "
+                dur="1.2s" repeatCount="indefinite"/>
+            </polyline>
+        </svg>
+        <div class="splash-title">CityCare Hospital</div>
+        <div class="splash-tagline">Caring for Life, Every Heartbeat Counts</div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <!-- Animated bubbles for background -->
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+    </div>
+
+    <!-- Login Container (shown by default) -->
+    <div id="login-container">
+        <div class="floating floating-1"></div>
+        <div class="floating floating-2"></div>
+        <div class="floating floating-3"></div>
+        <div class="floating floating-4"></div>
+        
+        <div class="login-container">
+            <div class="login-header">
+                <div class="hospital-icon animate__animated animate__pulse animate__infinite">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <h2 class="animate__animated animate__fadeIn">Hospital Portal</h2>
+            </div>
+            
+            <div class="login-body">
+                <div class="login-left">
+                    <div class="role-selector">
+                        <button class="role-btn active animate__animated animate__fadeInLeft" id="doctorBtn">Doctor</button>
+                        <button class="role-btn animate__animated animate__fadeInRight" id="userBtn">Patient</button>
+                    </div>
+                    
+                    <!-- Doctor Forms -->
+                    <div id="doctorForms">
+                        <!-- Doctor Sign In -->
+                        <div class="form-container active" id="doctorSignIn">
+                            <h4 class="text-center mb-4 animate__animated animate__fadeIn">Doctor Sign In</h4>
+                            <form id="doctorLoginForm">
+                                <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+                                    <label for="doctorId">Doctor ID</label>
+                                    <input type="text" id="doctorId" class="form-control" placeholder="Enter your ID" required>
+                                </div>
+                                <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+                                    <label for="doctorName">Name</label>
+                                    <input type="text" id="doctorName" class="form-control" placeholder="Enter your name" required>
+                                </div>
+                                <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+                                    <label for="doctorPassword">Password</label>
+                                    <input type="password" id="doctorPassword" class="form-control" placeholder="Enter your password" required>
+                                </div>
+                                <div class="forgot-password animate__animated animate__fadeIn animate__delay-2s">
+                                    <a href="#" id="doctorForgotPassword">Forgot Password?</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3 animate__animated animate__fadeIn animate__delay-2s">Sign In</button>
+                            </form>
+                            
+                            <div class="toggle-form animate__animated animate__fadeIn animate__delay-2s">
+                                <span>Don't have an account? </span>
+                                <a id="showDoctorSignUp">Sign Up</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Doctor Sign Up -->
+                        <div class="form-container" id="doctorSignUp">
+                            <h4 class="text-center mb-4">Doctor Sign Up</h4>
+                            <form id="doctorRegisterForm">
+                                <div class="form-group">
+                                    <label for="newDoctorId">Doctor ID</label>
+                                    <input type="text" id="newDoctorId" class="form-control" placeholder="Enter your ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newDoctorName">Full Name</label>
+                                    <input type="text" id="newDoctorName" class="form-control" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newDoctorEmail">Email</label>
+                                    <input type="email" id="newDoctorEmail" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newDoctorPassword">Password</label>
+                                    <input type="password" id="newDoctorPassword" class="form-control" placeholder="Create a password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmDoctorPassword">Confirm Password</label>
+                                    <input type="password" id="confirmDoctorPassword" class="form-control" placeholder="Confirm your password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                            </form>
+                            
+                            <div class="social-login">
+                                <p class="text-center mb-3">Or sign up with</p>
+                                <button class="social-btn google" id="googleSignUpDoctor">
+                                    <i class="fab fa-google"></i> Google
+                                </button>
+                                <button class="social-btn facebook" id="facebookSignUpDoctor">
+                                    <i class="fab fa-facebook-f"></i> Facebook
+                                </button>
+                            </div>
+                            
+                            <div class="toggle-form">
+                                <span>Already have an account? </span>
+                                <a id="showDoctorSignIn">Sign In</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- User Forms -->
+                    <div id="userForms" style="display: none;">
+                        <!-- User Sign In -->
+                        <div class="form-container active" id="userSignIn">
+                            <h4 class="text-center mb-4">Patient Sign In</h4>
+                            <form id="userLoginForm">
+                                <div class="form-group">
+                                    <label for="userEmail">Email</label>
+                                    <input type="email" id="userEmail" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userPassword">Password</label>
+                                    <input type="password" id="userPassword" class="form-control" placeholder="Enter your password" required>
+                                </div>
+                                <div class="forgot-password">
+                                    <a href="#" id="userForgotPassword">Forgot Password?</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Sign In</button>
+                            </form>
+                            <div class="toggle-form">
+                                <span>Don't have an account? </span>
+                                <a id="showUserSignUp">Sign Up</a>
+                            </div>
+                        </div>
+                        
+                        <!-- User Sign Up -->
+                        <div class="form-container" id="userSignUp">
+                            <h4 class="text-center mb-4">Patient Sign Up</h4>
+                            <form id="userRegisterForm">
+                                <div class="form-group">
+                                    <label for="newUserEmail">Email</label>
+                                    <input type="email" id="newUserEmail" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newUserPassword">Password</label>
+                                    <input type="password" id="newUserPassword" class="form-control" placeholder="Create a password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmUserPassword">Confirm Password</label>
+                                    <input type="password" id="confirmUserPassword" class="form-control" placeholder="Confirm your password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                            </form>
+                            
+                            <div class="social-login">
+                                <p class="text-center mb-3">Or sign up with</p>
+                                <button class="social-btn google" id="googleSignUpUser">
+                                    <i class="fab fa-google"></i> Google
+                                </button>
+                                <button class="social-btn facebook" id="facebookSignUpUser">
+                                    <i class="fab fa-facebook-f"></i> Facebook
+                                </button>
+                            </div>
+                            
+                            <div class="toggle-form">
+                                <span>Already have an account? </span>
+                                <a id="showUserSignIn">Sign In</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="login-right">
+                    <div class="text-center">
+                        <img src="https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg" alt="Hospital Illustration" class="img-fluid animate__animated animate__fadeIn animate__delay-1s" style="max-height: 350px;">
+                        <h3 class="mt-4 animate__animated animate__fadeIn animate__delay-1s">Welcome to Our Hospital Portal</h3>
+                        <p class="text-muted animate__animated animate__fadeIn animate__delay-2s">Access your medical records, book appointments, and connect with healthcare professionals.</p>
+                        
+                        <div class="features mt-5">
+                            <div class="feature-item mb-3 animate__animated animate__fadeIn animate__delay-2s">
+                                <i class="fas fa-user-md text-primary me-2"></i>
+                                <span>Expert Doctors</span>
+                            </div>
+                            <div class="feature-item mb-3 animate__animated animate__fadeIn animate__delay-3s">
+                                <i class="fas fa-calendar-check text-primary me-2"></i>
+                                <span>Easy Appointment Booking</span>
+                            </div>
+                            <div class="feature-item mb-3 animate__animated animate__fadeIn animate__delay-4s">
+                                <i class="fas fa-lock text-primary me-2"></i>
+                                <span>Secure Medical Records</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forgot Password Modal -->
+        <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reset Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Enter your email address and we'll send you a link to reset your password.</p>
+                        <div class="form-group mt-3">
+                            <label for="resetEmail">Email Address</label>
+                            <input type="email" id="resetEmail" class="form-control" placeholder="Your email address">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="sendResetLink">Send Reset Link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website Content (hidden by default) -->
+    <div id="main-content">
+        <!-- Header -->
+        <header id="main-header">
+            <div class="container header-content">
+                <a href="#" class="logo">Dr. <span>Smith</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#" id="logout-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Quality Healthcare for Your Family</h1>
+                <p>Dr. Smith provides compassionate and comprehensive medical care for patients of all ages. Our clinic offers personalized treatment plans to meet your unique health needs.</p>
+                <a href="#contact" class="btn">Book an Appointment</a>
+            </div>
+        </section>
+    
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                </div>
+                <div class="services-grid" id="services-container">
+                    <!-- Services will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    
+        <!-- Image Carousel Section -->
+        <section class="section carousel-section" id="gallery">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Clinic</h2>
+                </div>
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Carousel items will be added by JavaScript -->
+                    </div>
+                </div>
+                <div class="carousel-nav" id="carousel-dots">
+                    <!-- Navigation dots will be added by JavaScript -->
+                </div>
+            </div>
+        </section>
+    
+        <!-- Testimonials Section -->
+        <section class="section testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Patient Testimonials</h2>
+                </div>
+                <div class="testimonials-grid" id="testimonials-container">
+                    <!-- Testimonials will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                </div>
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 1.5rem;">123 Medical Drive, Healthville, HV 12345</p>
+                    <p style="margin-bottom: 1.5rem;">Phone: (123) 456-7890</p>
+                    <p style="margin-bottom: 2rem;">Email: info@drsmithclinic.com</p>
+                    <a href="#" class="btn">Schedule an Appointment</a>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-logo">Dr. Smith</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 Dr. Smith's Clinic. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Back to Top Button -->
+        <a href="#home" class="back-to-top" id="back-to-top">↑</a>
+    
+        <!-- Admin Panel -->
+        <div class="admin-panel" id="admin-panel">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h2 class="admin-title">Admin Panel</h2>
+                    <button class="close-admin" id="close-admin">&times;</button>
+                </div>
+                
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-tab="services">Services</div>
+                    <div class="admin-tab" data-tab="testimonials">Testimonials</div>
+                    <div class="admin-tab" data-tab="gallery">Gallery</div>
+                </div>
+                
+                <!-- Services Admin -->
+                <div class="admin-content active" id="services-admin">
+                    <button class="btn" id="add-service">Add New Service</button>
+                    
+                    <ul class="admin-list" id="services-list">
+                        <!-- Services will be loaded here -->
+                    </ul>
+                    
+                    <!-- Service Form (hidden by default) -->
+                    <div class="admin-form" id="service-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="service-title">Service Title</label>
+                            <input type="text" id="service-title">
+                        </div>
+                        <div class="form-group">
+                            <label for="service-description">Description</label>
+                            <textarea id="service-description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-image">Image</label>
+                            <input type="file" id="service-image" accept="image/*">
+                            <div id="service-image-preview" style="margin-top: 1rem;"></div>
+                        </div>
+                        <div class="admin-btn-group">
+                            <button class="btn btn-save" id="save-service">Save</button>
+                            <button class="btn btn-cancel" id="cancel-service">Cancel</button>
+                        </div>
+                        <input type="hidden" id="service-id">
+                    </div>
+                </div>
+                
+                <!-- Testimonials Admin -->
+                <div class="admin-content" id="testimonials-admin">
+                    <button class="btn" id="add-testimonial">Add New Testimonial</button>
+                    
+                    <ul class="admin-list" id="testimonials-list">
+                        <!-- Testimonials will be loaded here -->
+                    </ul>
+                    
+                    <!-- Testimonial Form (hidden by default) -->
+                    <div class="admin-form" id="testimonial-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="testimonial-author">Author Name</label>
+                            <input type="text" id="testimonial-author">
+                        </div>
+                        <div class="form-group">
+                            <label for="testimonial-content">Testimonial</label>
+                            <textarea id="testimonial-content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="testimonial-rating">Rating (1-5)</label>
+                            <select id="testimonial-rating">
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                        <div class="admin-btn-group">
+                            <button class="btn btn-save" id="save-testimonial">Save</button>
+                            <button class="btn btn-cancel" id="cancel-testimonial">Cancel</button>
+                        </div>
+                        <input type="hidden" id="testimonial-id">
+                    </div>
+                </div>
+                
+                <!-- Gallery Admin -->
+                <div class="admin-content" id="gallery-admin">
+                    <button class="btn" id="add-gallery-image">Add New Image</button>
+                    
+                    <ul class="admin-list" id="gallery-list">
+                        <!-- Gallery images will be loaded here -->
+                    </ul>
+                    
+                    <!-- Gallery Form (hidden by default) -->
+                    <div class="admin-form" id="gallery-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="gallery-image-title">Image Title (Optional)</label>
+                            <input type="text" id="gallery-image-title">
+                        </div>
+                        <div class="form-group">
+                            <label for="gallery-image-description">Description</label>
+                            <textarea id="gallery-image-description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="gallery-image">Image</label>
+                            <input type="file" id="gallery-image" accept="image/*">
+                            <div id="gallery-image-preview" style="margin-top: 1rem;"></div>
+                        </div>
+                        <div class="admin-btn-group">
+                            <button class="btn btn-save" id="save-gallery-image">Save</button>
+                            <button class="btn btn-cancel" id="cancel-gallery-image">Cancel</button>
+                        </div>
+                        <input type="hidden" id="gallery-image-id">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="image-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+            <img class="modal-image" id="modal-image" src="" alt="">
+            <h3 class="modal-title" id="modal-title"></h3>
+            <p class="modal-description" id="modal-description"></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
